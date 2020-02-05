@@ -1,4 +1,4 @@
-##install mecab
+## install mecab
 
 brew install mecab
 brew install mecab-ipadic
