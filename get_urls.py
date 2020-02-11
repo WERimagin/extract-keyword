@@ -7,6 +7,7 @@ from urllib.parse import urlparse,urljoin
 
 def get_urls(url):
     r = requests.get(url)
+    r.encoding=r.apparent_encoding
     soup = BeautifulSoup(r.text, "html.parser")
 
     urls=[url]
