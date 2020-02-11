@@ -18,7 +18,9 @@ def parse_vocab(urls):
         body_text=body.get_text()
         body_split_text=[t.strip() for t in body_text.split("\n") if len(t.strip())>0]
 
-        mecab = MeCab.Tagger("-d /usr/local/lib/mecab/dic/mecab-ipadic-neologd")
+        #エラーが出たため放置
+        #mecab = MeCab.Tagger("-d /usr/local/lib/mecab/dic/mecab-ipadic-neologd")
+        mecab=MeCab.Tagger()
         for t in body_split_text:
             tokens=mecab.parse(t).split()
             vocab+=[tokens[i] for i in range(0,len(tokens)-1,2) if tokens[i+1].split(",")[0]=="名詞"]
