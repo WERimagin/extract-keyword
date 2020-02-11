@@ -13,14 +13,19 @@ def index():
 def input_text():
     if request.method == 'POST':
         url = request.form['name']
-        vocab=parse_vocab([url])
+        link_url=get_urls(url,size=1)
+        if len(link_url)==0:
+            return render_template("index.html")
+        vocab=parse_vocab(link_url)
     return render_template('input_text.html', vocab=vocab)
 
 @app.route('/input_domain', methods=['POST']) #Methodを明示する必要あり
 def input_domain():
     if request.method == 'POST':
         url = request.form['name']
-        link_url=get_urls(url)
+        link_url=get_urls(url,size=5)
+        if len(link_url)==0:
+            return render_template("index.html")
         vocab=parse_vocab(link_url)
     return render_template('input_domain.html', vocab=vocab)
 

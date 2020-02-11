@@ -5,8 +5,11 @@ from collections import Counter
 import os
 from urllib.parse import urlparse,urljoin
 
-def get_urls(url):
-    r = requests.get(url)
+def get_urls(url,size):
+    try:
+        r = requests.get(url)
+    except:
+        return []
     r.encoding=r.apparent_encoding
     soup = BeautifulSoup(r.text, "html.parser")
 
@@ -19,4 +22,4 @@ def get_urls(url):
         if url_parse.netloc==link_url_parse.netloc or link_url_parse.netloc=="":
             urls.append("http://"+url_parse.netloc+link_url_parse.path)
 
-    return urls
+    return urls[0:size]
