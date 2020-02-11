@@ -8,7 +8,6 @@ from nltk.corpus import stopwords
 def parse_vocab(urls):
 
     vocab=[]
-    #nltk.download()
     stop_words = stopwords.words('english')
     for url in urls[0:5]:
         r = requests.get(url)
