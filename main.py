@@ -24,5 +24,5 @@ def input_domain():
         vocab=parse_vocab(link_url)
     return render_template('input_domain.html', vocab=vocab)
 
-#app.debug = True
-app.run(host='0.0.0.0', port=8000)
+app.debug = True
+app.run(host='0.0.0.0', port=80)
