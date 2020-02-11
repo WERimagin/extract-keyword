@@ -27,5 +27,7 @@ def parse_vocab(urls):
             vocab+=[tokens[i] for i in range(0,len(tokens)-1,2) if tokens[i+1].split(",")[0]=="名詞"]
 
     #print(sorted(Counter(vocab).items(),key=lambda x:-x[1]))
-    ranked_vocab=[(k,v) for k,v in sorted(Counter(vocab).items(),key=lambda x:-x[1]) if k.lower() not in stop_words][0:30]
+    ranked_vocab= \
+        [(k,v) for k,v in sorted(Counter(vocab).items(),key=lambda x:-x[1]) \
+        if k.lower() not in stop_words and len(k)>=2][0:30]
     return ranked_vocab
