@@ -11,9 +11,10 @@ class News():
         self.collected_news={}
     def get_news(self):
 
-        now_time=datetime.datetime.now()
+        #現在時刻を取得、日本時刻に合わせる
+        now_time=datetime.datetime.now(tz=datetime.timezone.utc)+timedelta(hours=9)
         stopwords=["さん"]
-        news_count=7
+        news_count=6
         news=[]
 
         for i in range(news_count):
