@@ -11,19 +11,14 @@ cd ..
 pip install mecab-python3  
 
 
-## apt-get
+## GCP (not use mecab-ipadic)
 
-apt-get install mecab  
-apt-get install mecab-ipadic  
-
-git clone https://github.com/neologd/mecab-ipadic-neologd.git  
-cd mecab-ipadic-neologd
-(mecab-config is not install) apt-get install libmecab-dev
-
-sudo bin/install-mecab-ipadic-neologd  
-cd ..  
-
+apt install mecab  
+apt install mecab-ipadic-utf8  
 pip install mecab-python3  
+
+(use venv python to use sudo)  
+sudo home/user_name/origin/bin/activate/python3 main.py  
 
 
 
