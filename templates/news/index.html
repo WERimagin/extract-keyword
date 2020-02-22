@@ -6,15 +6,29 @@
   </head>
   <body>
 
-    <h1>Yahoo News summary</h1>
-    url:https://news.yahoo.co.jp/<br>
+    <h1>Yahooニュースまとめ</h1>
 
-    {% for date,news in news_data %}
-      <p>{{date}}</p>
-      {% for vocab,count in news %}
-        {{vocab}}: {{count}}回<br>
+    <p>Yahooニュースで出現回数が多かった単語をランキングでまとめてあります</p>
+
+    <table border="1">
+      <tr bgcolor="#ffd700">
+        <td>&nbsp;</td>
+        {% for date in news_data.date %}
+        <td>{{date}}</td>
+        {% endfor %}
+      </tr>
+      {% for date in news_data.words %}
+      <tr>
+        <td>{{loop.index}}位</td>
+        {% for word in date %}
+        <td align="center">{{word}}</td>
+        {% endfor %}
+      <tr>
       {% endfor %}
-    {% endfor %}
+    </table>
+
+    <p><a href=https://news.yahoo.co.jp/>yahoo news</a></p>
+
 
   </body>
 </html>

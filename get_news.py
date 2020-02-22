@@ -6,6 +6,14 @@ import datetime
 from datetime import date,timedelta
 import MeCab
 
+def reshape_news(news):
+    word_size=len(news[0][1])
+    news_count=len(news)
+    date=["{}年{}月{}日".format(d[0][0:4],d[0][4:6],d[0][6:8]) for d in news]
+    words=[[news[j][1][i] for j in range(news_count)] for i in range(word_size)]
+    news={"date":date,"words":words}
+    return news
+
 class News():
     def __init__(self):
         self.collected_news={}
@@ -17,6 +25,7 @@ class News():
         news_count=6
         news=[]
 
+        #日付ごとにニュースを取得し、newsにappend
         for i in range(news_count):
             date=now_time+timedelta(days=-1*(i+1))
             today="{:04}{:02}{:02}".format(date.year,date.month,date.day)
@@ -34,7 +43,6 @@ class News():
                     else:
                         title_list+=title_list_page
 
-
                 mecab=MeCab.Tagger()
                 vocab=[]
                 for t in title_list:
@@ -42,8 +50,10 @@ class News():
                     vocab+=[tokens[i] for i in range(0,len(tokens)-1,2) if tokens[i+1].split(",")[0]=="名詞"]
 
                 ranked_vocab= \
-                    [(k,v) for k,v in sorted(Counter(vocab).items(),key=lambda x:-x[1]) \
+                    [k for k,v in sorted(Counter(vocab).items(),key=lambda x:-x[1]) \
                     if len(k)>=2 and k not in stopwords][0:10]
                 self.collected_news[today]=ranked_vocab
             news.append((today,self.collected_news[today]))
+
+        news=reshape_news(news)
         return news
