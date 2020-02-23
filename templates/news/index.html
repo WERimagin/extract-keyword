@@ -21,7 +21,7 @@
       <tr>
         <td>{{loop.index}}位</td>
         {% for word in date %}
-        <td align="center">{{word}}</td>
+        <td align="center"><a href="/news/{{word}}">{{word}}</a></td>
         {% endfor %}
       <tr>
       {% endfor %}

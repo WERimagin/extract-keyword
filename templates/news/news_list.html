@@ -1,0 +1,24 @@
+<!-- index.html -->
+<!DOCTYPE html>
+
+<html lang="ja">
+  <head>
+  </head>
+  <body>
+
+    <h1>Yahooニュースまとめ</h1>
+
+    <p>Yahooニュースで出現回数が多かった単語をランキングでまとめてあります</p>
+
+      {% for news_per_date in news_list %}
+        <h2>{{news_per_date.date}}</h2>
+        {% for news in news_per_date.title_list %}
+          <p><a href={{news.link}}>{{news.title}}</a></p>
+        {% endfor %}
+      {% endfor %}
+
+    <p><a href=https://news.yahoo.co.jp/>yahoo news</a></p>
+
+
+  </body>
+</html>

@@ -35,11 +35,17 @@ def input_domain():
         vocab=parse_vocab(link_url)
     return render_template('parse_url/input_domain.html', vocab=vocab)
 
-@app.route('/news/index.html') #Methodを明示する必要あり
+@app.route('/news/index.html')
 def news_index():
     global news
-    news_data=news.get_news()
+    news_data=news.get_words()
     return render_template('news/index.html', news_data=news_data)
+
+#単語ごとに返す
+@app.route('/news/<name>')
+def news_name(name=None):
+    news_list=news.get_news(name)
+    return render_template('news/news_list.html', news_list=news_list)
 
 app.debug = True
 result = app.run(host='0.0.0.0', port=80)
